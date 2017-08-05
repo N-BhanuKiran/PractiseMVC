@@ -1,28 +1,46 @@
 ﻿@{
     ViewBag.Title = "Greeting Page";
     var currentDay = DateTime.UtcNow.DayOfWeek;
+    ViewBag.Message = "Using Html Helpers";
 }
 <hgroup>
     <h1>@ViewBag.Title.</h1>
     <h2>@ViewBag.Message</h2>
-    
+
 </hgroup>
 <article>
-    <form action="" method="post">
-        <p>
-            <label for="fullname">please enter your full name here</label>
-            <input type="text" name="fullname" />
-        </p>
-        <p>
-            <label for="destn">please enter your Preferred destination</label>
-            <input type="text" name="destn" />
-        </p>
-        <input type="submit" value="submit" />
-    </form>
+    @*<form action="" method="post">
+            <p>
+                <label for="fullname">please enter your full name here</label>
+                <input type="text" name="fullname" />
+            </p>
+            <p>
+                <label for="destn">please enter your Preferred destination</label>
+                <input type="text" name="destn" />
+            </p>
+            <input type="submit" value="submit" />
+        </form>*@
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true);
+        <div class="label">
+            @Html.Label("Full Name")
+        </div>
+        <div>
+            @Html.TextBox("Full Name")
+        </div>
+        <div class="label">
+            @Html.Label("Destination")
+        </div>
+        <div>
+            @Html.TextBox("Destination")
+        </div>
+        <input type="submit" value="Submit" />
+    }
     @if (IsPost)
     {
-        var userName = Request["fullname"];
-        var destination = Request["destn"];
+        var userName = Request["Full Name"];
+        var destination = Request["Destination"];
         <p>Hello @userName. You have selected @destination</p>
 
     }
