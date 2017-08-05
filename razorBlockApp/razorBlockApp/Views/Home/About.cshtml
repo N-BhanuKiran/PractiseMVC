@@ -1,13 +1,17 @@
 ﻿@{
     ViewBag.Title = "Greeting Page";
+    var currentDay = DateTime.UtcNow.DayOfWeek;
     string greeting = "";
+    greeting = "Today is " + currentDay + ", and its a wonderful day indeed!";
     if(IsPost)
     {
         var userName = Request["fullname"];
         var destination = Request["destn"];
         greeting = "Hello " + userName + ". You have selected " + destination + ".";
-        
+            
     }
+    
+    
 }
 <hgroup>
     <h1>@ViewBag.Title.</h1>
