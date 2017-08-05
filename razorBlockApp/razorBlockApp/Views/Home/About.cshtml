@@ -2,11 +2,17 @@
     ViewBag.Title = "Greeting Page";
     var currentDay = DateTime.UtcNow.DayOfWeek;
     ViewBag.Message = "Using Html Helpers";
+    ViewBag.Messages = "Strips Away HTML tags from input";
+    var testString = "<div><h3> Test text inside div and h3 tags</h3></div>";
+}
+@helper myHtmlStrip(string inputHtml) 
+{ 
+    @System.Text.RegularExpressions.Regex.Replace(inputHtml, "<.*?>", string.Empty);
 }
 <hgroup>
     <h1>@ViewBag.Title.</h1>
     <h2>@ViewBag.Message</h2>
-
+    <h2>@ViewBag.Messages</h2>
 </hgroup>
 <article>
     @*<form action="" method="post">
@@ -48,4 +54,10 @@
     {
         <p>Today is @currentDay and its a wonderful day indeed!"</p>
     }
+    <p>
+        @testString
+    </p>
+    <p>
+        @myHtmlStrip(testString)
+    </p>
 </article>
