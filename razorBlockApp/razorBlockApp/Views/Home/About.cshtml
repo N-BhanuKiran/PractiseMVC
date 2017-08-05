@@ -1,34 +1,32 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Greeting Page";
+    string greeting = "";
+    if(IsPost)
+    {
+        var userName = Request["fullname"];
+        var destination = Request["destn"];
+        greeting = "Hello " + userName + ". You have selected " + destination + ".";
+        
+    }
 }
-
-<hgroup class="title">
+<hgroup>
     <h1>@ViewBag.Title.</h1>
     <h2>@ViewBag.Message</h2>
+    
 </hgroup>
-
 <article>
+    <form action="" method="post">
+        <p>
+            <label for="fullname">please enter your full name here</label>
+            <input type="text" name="fullname" />
+        </p>
+        <p>
+            <label for="destn">please enter your Preferred destination</label>
+            <input type="text" name="destn" />
+        </p>
+        <input type="submit" value="submit" />
+    </form>
     <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
+        @greeting;
     </p>
 </article>
-
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
