@@ -1,17 +1,6 @@
 ﻿@{
     ViewBag.Title = "Greeting Page";
     var currentDay = DateTime.UtcNow.DayOfWeek;
-    string greeting = "";
-    greeting = "Today is " + currentDay + ", and its a wonderful day indeed!";
-    if(IsPost)
-    {
-        var userName = Request["fullname"];
-        var destination = Request["destn"];
-        greeting = "Hello " + userName + ". You have selected " + destination + ".";
-            
-    }
-    
-    
 }
 <hgroup>
     <h1>@ViewBag.Title.</h1>
@@ -30,7 +19,15 @@
         </p>
         <input type="submit" value="submit" />
     </form>
-    <p>
-        @greeting;
-    </p>
+    @if (IsPost)
+    {
+        var userName = Request["fullname"];
+        var destination = Request["destn"];
+        <p>Hello @userName. You have selected @destination</p>
+
+    }
+    else
+    {
+        <p>Today is @currentDay and its a wonderful day indeed!"</p>
+    }
 </article>
